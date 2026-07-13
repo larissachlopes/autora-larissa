@@ -9,13 +9,34 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;0,9..144,600;1,9..144,500;1,9..144,600&family=Inter:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="style.css">
+
+<!-- Meta Pixel Code -->
+<script>
+!function(f,b,e,v,n,t,s)
+{if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+n.queue=[];t=b.createElement(e);t.async=!0;
+t.src=v;s=b.getElementsByTagName(e)[0];
+s.parentNode.insertBefore(t,s)}(window, document,'script',
+'https://connect.facebook.net/en_US/fbevents.js');
+fbq('init', '2176163186285797');
+fbq('track', 'PageView');
+</script>
+<!-- End Meta Pixel Code -->
 </head>
 <body>
+<noscript><img height="1" width="1" style="display:none"
+src="https://www.facebook.com/tr?id=2176163186285797&ev=PageView&noscript=1"
+/></noscript>
 
 <div class="grain"></div>
 
 <header class="site-header">
-  <span class="brand">Larissa C. L.</span>
+  <a class="brand" href="#topo">
+    <img class="brand-photo" src="assets/autora/larissa.jpg" alt="Larissa C. L.">
+    <span>Larissa C. L.</span>
+  </a>
   <nav class="site-nav">
     <a href="#estante">Livros</a>
     <a href="#autora">Autora</a>
@@ -71,18 +92,14 @@
 
   <!-- AUTORA -->
   <section class="autora" id="autora">
-    <div class="autora-portrait" aria-hidden="true">
-      <svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
-        <circle cx="100" cy="100" r="98" fill="none" stroke="var(--gold)" stroke-width="1"/>
-        <circle cx="100" cy="100" r="70" fill="none" stroke="var(--plum)" stroke-width="1"/>
-        <path d="M100 30 L110 90 L170 100 L110 110 L100 170 L90 110 L30 100 L90 90 Z" fill="var(--gold)" opacity="0.85"/>
-      </svg>
+    <div class="autora-portrait">
+      <img src="assets/autora/larissa.jpg" alt="Retrato de Larissa C. L.">
     </div>
     <div class="autora-text">
       <p class="section-label">02 — A autora</p>
-      <h2 class="section-title">Larissa escreve sobre o que se herda, o que se perde e o que precisa ser reconstruído.</h2>
-      <p>Leitora voraz desde a infância, encontrou na escrita uma forma de investigar aquilo que permanece depois das rupturas. Autora da série <strong>Crônicas dos Lumengarde</strong>, transita entre a fantasia sombria e o mistério psicológico, construindo universos onde a magia tem consequências reais.</p>
-      <p>Suas histórias partem da fantasia, mas dialogam diretamente com questões humanas, emocionais e políticas — buscando sempre provocar mais perguntas do que respostas.</p>
+      <h2 class="section-title">Larissa C. L.</h2>
+      <p>Autora de fantasia e suspense, construindo narrativas que entrelaçam magia, mistério e emoções humanas com protagonistas femininas marcantes. Em suas histórias, o extraordinário se infiltra no cotidiano, desenvolvendo jovens mulheres que enfrentam forças maiores que elas, descobrem seu poder interior e redefinem seus próprios destinos.</p>
+      <p>Seus livros são convites para caminhar ao lado de heroínas que crescem, falham, lutam e se reerguem — não por serem imunes à escuridão, mas por aprenderem a iluminá-la.</p>
     </div>
   </section>
 

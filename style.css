@@ -97,10 +97,22 @@ section { padding-top: 6rem; padding-bottom: 6rem; }
 }
 
 .brand {
+  display: flex;
+  align-items: center;
+  gap: 0.65rem;
   font-family: var(--font-display);
   font-style: italic;
   font-size: 1.15rem;
   letter-spacing: 0.02em;
+  text-decoration: none;
+  color: var(--ink);
+}
+.brand-photo {
+  width: 38px;
+  height: 38px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 1px solid var(--line);
 }
 
 .site-nav { display: flex; gap: 2rem; font-size: 0.92rem; }
@@ -288,7 +300,12 @@ section { padding-top: 6rem; padding-bottom: 6rem; }
   box-shadow: 0 12px 24px -12px rgba(37,31,43,0.45);
 }
 
-.detail-series {
+.detail-cover img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 3px;
+}
   font-family: var(--font-mono);
   font-size: 0.72rem;
   text-transform: uppercase;
@@ -325,7 +342,14 @@ section { padding-top: 6rem; padding-bottom: 6rem; }
   align-items: start;
   border-top: 1px solid var(--line);
 }
-.autora-portrait svg { width: 100%; height: auto; }
+.autora-portrait img {
+  width: 100%;
+  aspect-ratio: 1 / 1;
+  object-fit: cover;
+  border-radius: 50%;
+  border: 1px solid var(--line);
+  box-shadow: 0 16px 32px -18px rgba(37,31,43,0.45);
+}
 .autora-text p { max-width: 60ch; color: var(--ink-soft); }
 .autora-text p strong { color: var(--ink); }
 
