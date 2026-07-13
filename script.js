@@ -220,19 +220,41 @@ detailClose.addEventListener("click", () => {
 
 renderShelf();
 
-/* ========================================================= */
-/* Newsletter — placeholder. Troque por Mailchimp/Substack/   */
-/* Google Forms depois (veja o README).                       */
-/* ========================================================= */
+
+const FORMSPREE_ENDPOINT = "https://formspree.io/f/mojgqkkl";
+
 const form = document.getElementById("newsletter-form");
 const note = document.getElementById("form-note");
 
-form.addEventListener("submit", (e) => {
+form.addEventListener("submit", async (e) => {
   e.preventDefault();
-  note.textContent = "Formulário de exemplo — conecte a um serviço de e-mail para receber inscrições de verdade (veja o README).";
 
-  if (typeof fbq !== "undefined") {
-    fbq("track", "Lead");
+  if (FORMSPREE_ENDPOINT.includes("SEU_ID_AQUI")) {
+    note.textContent = "Formulário ainda não configurado — veja o README para conectar ao Formspree.";
+    return;
+  }
+
+  const email = form.email.value;
+  note.textContent = "Enviando...";
+
+  try {
+    const response = await fetch(FORMSPREE_ENDPOINT, {
+      method: "POST",
+      headers: { "Accept": "application/json" },
+      body: new FormData(form)
+    });
+
+    if (response.ok) {
+      note.textContent = "Inscrição enviada! Obrigada por acompanhar.";
+      form.reset();
+      if (typeof fbq !== "undefined") {
+        fbq("track", "Lead");
+      }
+    } else {
+      note.textContent = "Não consegui enviar agora — tenta de novo em instantes.";
+    }
+  } catch (err) {
+    note.textContent = "Não consegui enviar agora — verifica sua conexão e tenta de novo.";
   }
 });
 
