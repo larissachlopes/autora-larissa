@@ -190,12 +190,27 @@ function openBook(i) {
       a.target = "_blank";
       a.rel = "noopener";
       a.textContent = link.label;
+      a.addEventListener("click", () => {
+        if (typeof fbq !== "undefined") {
+          fbq("trackCustom", "ClickComprarLivro", {
+            content_name: book.title,
+            tipo: key
+          });
+        }
+      });
       detailActions.appendChild(a);
     });
   }
 
   detail.hidden = false;
   detail.scrollIntoView({ behavior: "smooth", block: "nearest" });
+
+  if (typeof fbq !== "undefined") {
+    fbq("track", "ViewContent", {
+      content_name: book.title,
+      content_category: book.series
+    });
+  }
 }
 
 detailClose.addEventListener("click", () => {
@@ -215,6 +230,10 @@ const note = document.getElementById("form-note");
 form.addEventListener("submit", (e) => {
   e.preventDefault();
   note.textContent = "Formulário de exemplo — conecte a um serviço de e-mail para receber inscrições de verdade (veja o README).";
+
+  if (typeof fbq !== "undefined") {
+    fbq("track", "Lead");
+  }
 });
 
 /* Footer year */
