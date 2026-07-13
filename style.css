@@ -1,0 +1,395 @@
+/* ============================================
+   DESIGN TOKENS
+   ============================================ */
+:root {
+  --bg: #E3DED2;        /* warm stone — page background */
+  --paper: #F6F3EA;     /* lighter parchment — cards */
+  --ink: #251F2B;        /* deep indigo-black — text */
+  --ink-soft: #524A5C;   /* softened ink — secondary text */
+  --gold: #96742F;       /* aged brass — primary accent */
+  --gold-soft: #C9AD73;  /* lighter gold — hover states */
+  --plum: #574764;       /* muted plum — secondary accent */
+  --line: rgba(37, 31, 43, 0.14);
+
+  --font-display: 'Fraunces', serif;
+  --font-body: 'Inter', sans-serif;
+  --font-mono: 'IBM Plex Mono', monospace;
+
+  --max-w: 1080px;
+}
+
+* { box-sizing: border-box; }
+
+html { scroll-behavior: smooth; }
+
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--ink);
+  font-family: var(--font-body);
+  font-size: 16px;
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* subtle paper grain, purely decorative */
+.grain {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 999;
+  opacity: 0.035;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  mix-blend-mode: multiply;
+}
+
+a { color: inherit; }
+
+h1, h2, h3 { font-family: var(--font-display); font-weight: 500; margin: 0; }
+
+em { font-style: italic; color: var(--gold); }
+
+p { margin: 0 0 1em; }
+
+/* ============================================
+   LAYOUT HELPERS
+   ============================================ */
+.site-header, main > section, .site-footer {
+  max-width: var(--max-w);
+  margin: 0 auto;
+  padding-left: 1.5rem;
+  padding-right: 1.5rem;
+}
+
+section { padding-top: 6rem; padding-bottom: 6rem; }
+
+.section-label {
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--gold);
+  margin-bottom: 0.75rem;
+}
+
+.section-title {
+  font-size: clamp(1.6rem, 3vw, 2.4rem);
+  line-height: 1.25;
+  max-width: 32ch;
+  margin-bottom: 1.25rem;
+}
+
+.section-hint { color: var(--ink-soft); max-width: 42ch; }
+
+/* ============================================
+   HEADER
+   ============================================ */
+.site-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding-top: 2rem;
+  padding-bottom: 2rem;
+  position: sticky;
+  top: 0;
+  z-index: 10;
+  background: linear-gradient(var(--bg) 70%, transparent);
+}
+
+.brand {
+  font-family: var(--font-display);
+  font-style: italic;
+  font-size: 1.15rem;
+  letter-spacing: 0.02em;
+}
+
+.site-nav { display: flex; gap: 2rem; font-size: 0.92rem; }
+.site-nav a { text-decoration: none; color: var(--ink-soft); border-bottom: 1px solid transparent; transition: color 0.2s, border-color 0.2s; }
+.site-nav a:hover { color: var(--ink); border-color: var(--gold); }
+
+/* ============================================
+   HERO
+   ============================================ */
+.hero { padding-top: 4rem; padding-bottom: 5rem; }
+.eyebrow {
+  font-family: var(--font-mono);
+  font-size: 0.78rem;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--plum);
+  margin-bottom: 1.25rem;
+}
+.hero-title {
+  font-size: clamp(2.4rem, 6vw, 4.2rem);
+  line-height: 1.08;
+  letter-spacing: -0.01em;
+  max-width: 16ch;
+  margin-bottom: 1.5rem;
+}
+.hero-sub {
+  max-width: 46ch;
+  font-size: 1.05rem;
+  color: var(--ink-soft);
+  margin-bottom: 2.25rem;
+}
+
+.btn {
+  display: inline-block;
+  font-family: var(--font-body);
+  font-weight: 600;
+  font-size: 0.92rem;
+  padding: 0.85rem 1.6rem;
+  border-radius: 2px;
+  text-decoration: none;
+  cursor: pointer;
+  border: 1px solid transparent;
+  transition: transform 0.15s ease, background 0.2s ease, color 0.2s ease;
+}
+.btn-primary { background: var(--ink); color: var(--paper); }
+.btn-primary:hover { background: var(--gold); transform: translateY(-1px); }
+
+.btn-secondary { background: transparent; color: var(--ink); border-color: var(--line); }
+.btn-secondary:hover { border-color: var(--gold); color: var(--gold); transform: translateY(-1px); }
+
+/* ============================================
+   TEASER (próximo lançamento — secreto)
+   ============================================ */
+.teaser {
+  display: flex;
+  align-items: center;
+  gap: 1.75rem;
+  padding-top: 2.5rem;
+  padding-bottom: 2.5rem;
+  border-top: 1px solid var(--line);
+  border-bottom: 1px solid var(--line);
+}
+
+.teaser-seal {
+  flex: 0 0 auto;
+  width: 52px;
+  height: 52px;
+  color: var(--gold);
+  animation: pulse-seal 3.5s ease-in-out infinite;
+}
+.teaser-seal svg { width: 100%; height: 100%; }
+
+@keyframes pulse-seal {
+  0%, 100% { opacity: 0.75; transform: scale(1); }
+  50% { opacity: 1; transform: scale(1.06); }
+}
+
+.teaser-eyebrow {
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--gold);
+  margin-bottom: 0.4rem;
+}
+
+.teaser-title {
+  font-family: var(--font-display);
+  font-style: italic;
+  font-size: clamp(1.05rem, 2vw, 1.35rem);
+  line-height: 1.4;
+  color: var(--ink);
+  margin-bottom: 0.4rem;
+}
+
+.teaser-countdown {
+  font-family: var(--font-mono);
+  font-size: 0.82rem;
+  color: var(--ink-soft);
+  margin: 0;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .teaser-seal { animation: none; }
+}
+
+@media (max-width: 600px) {
+  .teaser { gap: 1.1rem; }
+  .teaser-seal { width: 40px; height: 40px; }
+}
+
+/* ============================================
+   ESTANTE (signature element)
+   ============================================ */
+.estante { border-top: 1px solid var(--line); }
+
+.shelf {
+  display: flex;
+  align-items: flex-end;
+  gap: 0.6rem;
+  margin-top: 3rem;
+  padding-bottom: 1.25rem;
+  border-bottom: 10px solid var(--ink);
+  overflow-x: auto;
+}
+
+.spine {
+  flex: 0 0 auto;
+  height: 260px;
+  width: 56px;
+  border-radius: 3px 3px 0 0;
+  cursor: pointer;
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  padding-bottom: 1rem;
+  border: 1px solid rgba(0,0,0,0.08);
+  box-shadow: inset -6px 0 10px -8px rgba(0,0,0,0.4);
+  transition: transform 0.25s ease, height 0.25s ease, box-shadow 0.25s ease;
+  position: relative;
+}
+.spine:hover, .spine:focus-visible { transform: translateY(-10px); box-shadow: 0 10px 18px -10px rgba(37,31,43,0.5); }
+.spine.active { transform: translateY(-14px); }
+
+.spine-label {
+  writing-mode: vertical-rl;
+  transform: rotate(180deg);
+  font-family: var(--font-display);
+  font-size: 0.85rem;
+  color: var(--paper);
+  letter-spacing: 0.02em;
+  white-space: nowrap;
+  max-height: 220px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.book-detail {
+  margin-top: 2.5rem;
+  background: var(--paper);
+  border: 1px solid var(--line);
+  border-radius: 4px;
+  padding: 2.5rem;
+  display: grid;
+  grid-template-columns: 160px 1fr;
+  gap: 2rem;
+  position: relative;
+  animation: rise 0.3s ease;
+}
+@keyframes rise { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: translateY(0); } }
+
+.detail-cover {
+  width: 160px;
+  height: 240px;
+  border-radius: 3px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--paper);
+  font-family: var(--font-display);
+  font-style: italic;
+  text-align: center;
+  padding: 1rem;
+  font-size: 0.95rem;
+  box-shadow: 0 12px 24px -12px rgba(37,31,43,0.45);
+}
+
+.detail-series {
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--plum);
+  margin-bottom: 0.4rem;
+}
+.detail-title { font-size: 1.6rem; margin-bottom: 0.9rem; }
+.detail-synopsis { color: var(--ink-soft); margin-bottom: 1.5rem; }
+
+.detail-actions { display: flex; flex-wrap: wrap; gap: 0.75rem; }
+
+.detail-close {
+  position: absolute;
+  top: 1rem; right: 1rem;
+  width: 32px; height: 32px;
+  border-radius: 50%;
+  border: 1px solid var(--line);
+  background: transparent;
+  font-size: 1.2rem;
+  line-height: 1;
+  cursor: pointer;
+  color: var(--ink-soft);
+}
+.detail-close:hover { background: var(--ink); color: var(--paper); }
+
+/* ============================================
+   AUTORA
+   ============================================ */
+.autora {
+  display: grid;
+  grid-template-columns: 220px 1fr;
+  gap: 3rem;
+  align-items: start;
+  border-top: 1px solid var(--line);
+}
+.autora-portrait svg { width: 100%; height: auto; }
+.autora-text p { max-width: 60ch; color: var(--ink-soft); }
+.autora-text p strong { color: var(--ink); }
+
+/* ============================================
+   CONTATO
+   ============================================ */
+.contato { border-top: 1px solid var(--line); }
+.newsletter-form {
+  display: flex;
+  gap: 0.75rem;
+  max-width: 440px;
+  margin-bottom: 0.75rem;
+}
+.newsletter-form input {
+  flex: 1;
+  padding: 0.85rem 1rem;
+  border: 1px solid var(--line);
+  border-radius: 2px;
+  background: var(--paper);
+  font-family: var(--font-body);
+  font-size: 0.95rem;
+  color: var(--ink);
+}
+.newsletter-form input:focus { outline: 2px solid var(--gold); outline-offset: 1px; }
+.form-note { font-size: 0.85rem; color: var(--plum); min-height: 1.2em; }
+
+.social-row { display: flex; gap: 1.5rem; margin-top: 2rem; }
+.social-row a { text-decoration: none; font-size: 0.9rem; color: var(--ink-soft); border-bottom: 1px solid var(--line); padding-bottom: 2px; }
+.social-row a:hover { color: var(--gold); border-color: var(--gold); }
+
+/* ============================================
+   FOOTER
+   ============================================ */
+.site-footer {
+  display: flex;
+  justify-content: space-between;
+  padding-top: 2.5rem;
+  padding-bottom: 2.5rem;
+  font-size: 0.82rem;
+  color: var(--ink-soft);
+  border-top: 1px solid var(--line);
+}
+
+/* ============================================
+   RESPONSIVE
+   ============================================ */
+@media (max-width: 760px) {
+  .autora { grid-template-columns: 1fr; }
+  .autora-portrait { width: 120px; }
+  .book-detail { grid-template-columns: 1fr; }
+  .detail-cover { width: 120px; height: 180px; }
+  .site-nav { gap: 1.1rem; font-size: 0.85rem; }
+  .newsletter-form { flex-direction: column; }
+  .site-footer { flex-direction: column; gap: 0.4rem; }
+}
+
+/* Respect reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  .spine, .btn, .book-detail { transition: none; animation: none; }
+}
+
+/* Visible keyboard focus */
+a:focus-visible, button:focus-visible, .spine:focus-visible {
+  outline: 2px solid var(--gold);
+  outline-offset: 2px;
+}

@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Larissa C. L. — Autora</title>
+<meta name="description" content="Larissa C. L. — autora de fantasia sombria e mistério psicológico. Crônicas dos Lumengarde e outras histórias sobre memória, poder e identidade.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;0,9..144,600;1,9..144,500;1,9..144,600&family=Inter:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<div class="grain"></div>
+
+<header class="site-header">
+  <span class="brand">Larissa C. L.</span>
+  <nav class="site-nav">
+    <a href="#estante">Livros</a>
+    <a href="#autora">Autora</a>
+    <a href="#contato">Contato</a>
+  </nav>
+</header>
+
+<main>
+
+  <!-- HERO -->
+  <section class="hero" id="topo">
+    <p class="eyebrow">Fantasia sombria &amp; mistério psicológico</p>
+    <h1 class="hero-title">Histórias sobre<br>o que <em>persiste</em><br>depois da memória.</h1>
+    <p class="hero-sub">Larissa escreve mundos onde a magia tem consequências reais e o passado nunca permanece intacto. Bem-vindo à estante.</p>
+    <a class="btn btn-primary" href="#estante">Ver os livros ↓</a>
+  </section>
+
+  <!-- ANÚNCIO / TEASER -->
+  <section class="teaser" id="teaser" aria-label="Anúncio de novo livro">
+    <div class="teaser-seal" aria-hidden="true">
+      <svg viewBox="0 0 60 60" xmlns="http://www.w3.org/2000/svg">
+        <circle cx="30" cy="30" r="28" fill="none" stroke="currentColor" stroke-width="1"/>
+        <circle cx="30" cy="30" r="21" fill="none" stroke="currentColor" stroke-width="1"/>
+        <path d="M30 12 L33 27 L48 30 L33 33 L30 48 L27 33 L12 30 L27 27 Z" fill="currentColor"/>
+      </svg>
+    </div>
+    <div class="teaser-text">
+      <p class="teaser-eyebrow">Em breve · 03 de agosto</p>
+      <p class="teaser-title">Um novo livro está chegando.<br>O título ainda é segredo.</p>
+      <p class="teaser-countdown" id="teaser-countdown"></p>
+    </div>
+  </section>
+
+  <!-- ESTANTE / SIGNATURE SHELF -->
+  <section class="estante" id="estante">
+    <p class="section-label">01 — A estante</p>
+    <h2 class="section-title">Toque em uma lombada</h2>
+    <p class="section-hint">Livros, contos e uma antologia — cada lombada guarda uma história diferente. Clique para abrir.</p>
+
+    <div class="shelf" id="shelf" role="list"></div>
+
+    <div class="book-detail" id="book-detail" hidden>
+      <button class="detail-close" id="detail-close" aria-label="Fechar">×</button>
+      <div class="detail-cover" id="detail-cover"></div>
+      <div class="detail-body">
+        <p class="detail-series" id="detail-series"></p>
+        <h3 class="detail-title" id="detail-title"></h3>
+        <p class="detail-synopsis" id="detail-synopsis"></p>
+        <div class="detail-actions" id="detail-actions"></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- AUTORA -->
+  <section class="autora" id="autora">
+    <div class="autora-portrait" aria-hidden="true">
+      <svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
+        <circle cx="100" cy="100" r="98" fill="none" stroke="var(--gold)" stroke-width="1"/>
+        <circle cx="100" cy="100" r="70" fill="none" stroke="var(--plum)" stroke-width="1"/>
+        <path d="M100 30 L110 90 L170 100 L110 110 L100 170 L90 110 L30 100 L90 90 Z" fill="var(--gold)" opacity="0.85"/>
+      </svg>
+    </div>
+    <div class="autora-text">
+      <p class="section-label">02 — A autora</p>
+      <h2 class="section-title">Larissa escreve sobre o que se herda, o que se perde e o que precisa ser reconstruído.</h2>
+      <p>Leitora voraz desde a infância, encontrou na escrita uma forma de investigar aquilo que permanece depois das rupturas. Autora da série <strong>Crônicas dos Lumengarde</strong>, transita entre a fantasia sombria e o mistério psicológico, construindo universos onde a magia tem consequências reais.</p>
+      <p>Suas histórias partem da fantasia, mas dialogam diretamente com questões humanas, emocionais e políticas — buscando sempre provocar mais perguntas do que respostas.</p>
+    </div>
+  </section>
+
+  <!-- CONTATO / NEWSLETTER -->
+  <section class="contato" id="contato">
+    <p class="section-label">03 — Fique por dentro</p>
+    <h2 class="section-title">Novos livros, bastidores e datas de lançamento.</h2>
+    <form class="newsletter-form" id="newsletter-form">
+      <input type="email" name="email" placeholder="seu@email.com" required aria-label="Seu e-mail">
+      <button type="submit" class="btn btn-primary">Inscrever-se</button>
+    </form>
+    <p class="form-note" id="form-note"></p>
+
+    <div class="social-row">
+      <a href="#" target="_blank" rel="noopener">Instagram</a>
+      <a href="#" target="_blank" rel="noopener">TikTok</a>
+      <a href="mailto:contato@example.com">E-mail</a>
+    </div>
+  </section>
+
+</main>
+
+<footer class="site-footer">
+  <span>© <span id="year"></span> Larissa C. L.</span>
+  <span class="footer-note">Feito com tinta, café e um pouco de mistério.</span>
+</footer>
+
+<script src="script.js"></script>
+</body>
+</html>
