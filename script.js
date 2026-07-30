@@ -24,7 +24,7 @@ const BOOKS = [
     title: "A Vidente de Memórias",
     series: "Crônicas dos Lumengarde · Livro 1",
     synopsis: "Luna descobre um dom que a conecta a memórias que não são suas — e a uma linhagem de poder que a cidade preferia manter enterrada. Fantasia de estreia sobre heranças, dons e o peso do que vem antes de nós.",
-    spineColor: "9C5A82",
+    spineColor: "#9C5A82",
     cover: "assets/capas/vidente-de-memorias.jpg",
     links: {
       ebook: { label: "Comprar ebook", url: "https://www.amazon.com.br/dp/B0F7GZW1WX" },
@@ -35,7 +35,7 @@ const BOOKS = [
     title: "O Labirinto das Memórias Perdidas",
     series: "Crônicas dos Lumengarde · Livro 2",
     synopsis: "O universo dos Lumengarde se aprofunda: luto, ética e pertencimento se entrelaçam numa narrativa mais densa, onde o passado nunca fica realmente para trás.",
-    spineColor: "855090",
+    spineColor: "#855090",
     cover: "assets/capas/labirinto-das-memorias-perdidas.jpg",
     links: {
       ebook: { label: "Comprar ebook", url: "https://www.amazon.com.br/dp/B0GLJM6M1T" },
