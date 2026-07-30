@@ -14,7 +14,7 @@ const BOOKS = [
     {
     title: "O Vazio Estrelado",
     synopsis: "Toda noite, quando fecha os olhos, Isadora embarca numa nave com a mãe rumo a um lugar que ninguém mais consegue ver. De dia, ela tem onze anos, um pai que deixa bilhetes na geladeira, uma melhor amiga cientista e um medalhão guardado no bolso, o que restou da mãe antes da missão mais importante que já existiu. De noite, ela tem estrelas, corredores infinitos e uma mãe que nunca tem medo de nada. Uma história sobre o que inventamos pra sobreviver ao que não sabe dizer em voz alta, e sobre a coragem de finalmente escutar a verdade.",
-    spineColor: "#976065",
+    spineColor: "#C9707A",
     cover: "assets/capas/vazio-estrelado.jpg",
     links: {
       ebook: { label: "em breve!", url: "#" },
@@ -24,7 +24,7 @@ const BOOKS = [
     title: "A Vidente de Memórias",
     series: "Crônicas dos Lumengarde · Livro 1",
     synopsis: "Luna descobre um dom que a conecta a memórias que não são suas — e a uma linhagem de poder que a cidade preferia manter enterrada. Fantasia de estreia sobre heranças, dons e o peso do que vem antes de nós.",
-    spineColor: "var(--plum)",
+    spineColor: "9C5A82",
     cover: "assets/capas/vidente-de-memorias.jpg",
     links: {
       ebook: { label: "Comprar ebook", url: "https://www.amazon.com.br/dp/B0F7GZW1WX" },
@@ -35,7 +35,7 @@ const BOOKS = [
     title: "O Labirinto das Memórias Perdidas",
     series: "Crônicas dos Lumengarde · Livro 2",
     synopsis: "O universo dos Lumengarde se aprofunda: luto, ética e pertencimento se entrelaçam numa narrativa mais densa, onde o passado nunca fica realmente para trás.",
-    spineColor: "var(--gold)",
+    spineColor: "855090",
     cover: "assets/capas/labirinto-das-memorias-perdidas.jpg",
     links: {
       ebook: { label: "Comprar ebook", url: "https://www.amazon.com.br/dp/B0GLJM6M1T" },
@@ -46,7 +46,7 @@ const BOOKS = [
     title: "Natal das Memórias",
     series: "Conto avulso · Universo Crônicas dos Lumengarde",
     synopsis: "Um conto independente ambientado no universo dos Lumengarde, perfeito para quem já leu a série ou quer uma primeira visita a esse mundo antes de mergulhar nos livros completos.",
-    spineColor: "#DE98A8",
+    spineColor: "#6E4A9E",
     cover: "assets/capas/natal-das-memorias.jpg",
     links: {
       conto: { label: "Comprar conto", url: "https://www.amazon.com.br/dp/B0G9539KYM" }
@@ -56,7 +56,7 @@ const BOOKS = [
     title: "A Escolhida das Sombras",
     series: "Fantasia sombria",
     synopsis: "Duas amigas, dons que se cruzam e uma verdade escondida há gerações. Um novo capítulo no universo de mistério e magia de Larissa.",
-    spineColor: "#CC99FF",
+    spineColor: "#8767B5",
     cover: "assets/capas/escolhida-das-sombras.jpg",
     links: {
       ebook: { label: "Comprar ebook", url: "https://www.amazon.com.br/dp/B0G965YWL4" },
@@ -67,7 +67,7 @@ const BOOKS = [
     title: "A Canção que Afunda o Sol",
     series: "Conto gratuito · Universo A Escolhida das Sombras",
     synopsis: "Um conto gratuito que expande o universo de A Escolhida das Sombras, disponível para leitura direta no Wattpad.",
-    spineColor: "#E5CCFF",
+    spineColor: "#B49AD1",
     cover: "assets/capas/cancao-que-afunda-o-sol.jpg",
     links: {
       wattpad: { label: "Ler grátis no Wattpad", url: "https://www.wattpad.com/story/406865630-a-can%C3%A7%C3%A3o-que-afunda-o-sol-conto-do-universo-de-a" }
@@ -77,7 +77,7 @@ const BOOKS = [
     title: "O Mistério da Primavera",
     series: "Suspense psicológico",
     synopsis: "Um detetive, uma série de crimes ritualísticos e uma cidade com mais segredos do que confessa. Mistério com uma pitada de sobrenatural.",
-    spineColor: "#3E3A46",
+    spineColor: "#4A3F5E",
     cover: "assets/capas/misterio-da-primavera.jpg",
     links: {
       ebook: { label: "Comprar ebook", url: "https://www.amazon.com.br/dp/B0FHV4N9TQ" },
@@ -88,7 +88,7 @@ const BOOKS = [
     title: "Era Uma Vez… A História Não Contada",
     series: "Antologia · Clímax Editorial",
     synopsis: "Vinte e seis autores revisitam contos de fadas clássicos pelo ponto de vista de quem sempre ficou fora do foco — criados, animais, testemunhas silenciosas. Fantasia sombria com terror simbólico e suspense. Larissa participa com um conto original.",
-    spineColor: "#B08B3A",
+    spineColor: "#C9A227",
     cover: "assets/capas/era-uma-vez.jpg",
     links: {
       antologia: { label: "Comprar a antologia", url: "https://climaxeditorial.com.br/produto/era-uma-vez/" }
