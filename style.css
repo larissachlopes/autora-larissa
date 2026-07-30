@@ -473,7 +473,7 @@ section { padding-top: 6rem; padding-bottom: 6rem; }
 /* ============================================
    CTA FIXO (mobile) — aparece quando um livro está aberto
    ============================================ */
-.sticky-cta[hidden] { display: none; }
+.sticky-cta { display: none; }
 
 @media (max-width: 760px) {
   .sticky-cta:not([hidden]) {
