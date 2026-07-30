@@ -6,10 +6,25 @@
 <meta name="google-site-verification" content="cuv3bY3OhQ8v5rNJo01ytBoz14KcuwAs7c931UWcuzA" />
 <title>Larissa C. L. — Autora</title>
 <meta name="description" content="Larissa C. L. — autora de fantasia sombria e mistério psicológico. Crônicas dos Lumengarde e outras histórias sobre memória, poder e identidade.">
+<link rel="canonical" href="https://larissachlopes.github.io/autora-larissa/">
+
+<!-- Open Graph / compartilhamento em redes sociais -->
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://larissachlopes.github.io/autora-larissa/">
+<meta property="og:title" content="Larissa C. L. — Autora de fantasia sombria e mistério psicológico">
+<meta property="og:description" content="Crônicas dos Lumengarde, A Escolhida das Sombras e outras histórias sobre memória, poder e identidade.">
+<meta property="og:image" content="https://larissachlopes.github.io/autora-larissa/assets/autora/larissa.jpg">
+<meta property="og:locale" content="pt_BR">
+
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Larissa C. L. — Autora">
+<meta name="twitter:description" content="Fantasia sombria & mistério psicológico — conheça os livros de Larissa C. L.">
+<meta name="twitter:image" content="https://larissachlopes.github.io/autora-larissa/assets/autora/larissa.jpg">
+
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;0,9..144,600;1,9..144,500;1,9..144,600&family=Inter:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="style.css">
+<link rel="stylesheet" href="style.css?v=2">
 
 <!-- Meta Pixel Code -->
 <script>
@@ -25,6 +40,74 @@ fbq('init', '2176163186285797');
 fbq('track', 'PageView');
 </script>
 <!-- End Meta Pixel Code -->
+
+<!-- Schema.org — dados estruturados pra SEO -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Person",
+  "name": "Larissa C. L.",
+  "url": "https://larissachlopes.github.io/autora-larissa/",
+  "image": "https://larissachlopes.github.io/autora-larissa/assets/autora/larissa.jpg",
+  "sameAs": [
+    "https://www.instagram.com/autora_larissacl/",
+    "https://www.tiktok.com/@larissa.autora"
+  ]
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "Book",
+      "name": "A Vidente de Memórias",
+      "author": { "@type": "Person", "name": "Larissa C. L." },
+      "url": "https://www.amazon.com.br/dp/B0F7GZW1WX",
+      "inLanguage": "pt-BR",
+      "aggregateRating": { "@type": "AggregateRating", "ratingValue": "4.8", "bestRating": "5", "reviewCount": "4" }
+    },
+    {
+      "@type": "Book",
+      "name": "O Labirinto das Memórias Perdidas",
+      "author": { "@type": "Person", "name": "Larissa C. L." },
+      "url": "https://www.amazon.com.br/dp/B0GLJM6M1T",
+      "inLanguage": "pt-BR",
+      "aggregateRating": { "@type": "AggregateRating", "ratingValue": "5.0", "bestRating": "5", "reviewCount": "3" }
+    },
+    {
+      "@type": "Book",
+      "name": "A Escolhida das Sombras",
+      "author": { "@type": "Person", "name": "Larissa C. L." },
+      "url": "https://www.amazon.com.br/dp/B0G965YWL4",
+      "inLanguage": "pt-BR",
+      "aggregateRating": { "@type": "AggregateRating", "ratingValue": "5.0", "bestRating": "5", "reviewCount": "3" }
+    },
+    {
+      "@type": "Book",
+      "name": "O Mistério da Primavera",
+      "author": { "@type": "Person", "name": "Larissa C. L." },
+      "url": "https://www.amazon.com.br/dp/B0FHV4N9TQ",
+      "inLanguage": "pt-BR",
+      "aggregateRating": { "@type": "AggregateRating", "ratingValue": "5.0", "bestRating": "5", "reviewCount": "3" }
+    },
+    {
+      "@type": "Book",
+      "name": "Natal das Memórias",
+      "author": { "@type": "Person", "name": "Larissa C. L." },
+      "url": "https://www.amazon.com.br/dp/B0G9539KYM",
+      "inLanguage": "pt-BR"
+    },
+    {
+      "@type": "Book",
+      "name": "Era Uma Vez… A História Não Contada",
+      "author": { "@type": "Person", "name": "Larissa C. L." },
+      "url": "https://climaxeditorial.com.br/produto/era-uma-vez/",
+      "inLanguage": "pt-BR"
+    }
+  ]
+}
+</script>
 </head>
 <body>
 <noscript><img height="1" width="1" style="display:none"
@@ -93,7 +176,9 @@ src="https://www.facebook.com/tr?id=2176163186285797&ev=PageView&noscript=1"
       <div class="detail-body">
         <p class="detail-series" id="detail-series"></p>
         <h3 class="detail-title" id="detail-title"></h3>
+        <div class="detail-rating" id="detail-rating"></div>
         <p class="detail-synopsis" id="detail-synopsis"></p>
+        <blockquote class="detail-testimonial" id="detail-testimonial"></blockquote>
         <div class="detail-actions" id="detail-actions"></div>
       </div>
     </div>
@@ -115,10 +200,11 @@ src="https://www.facebook.com/tr?id=2176163186285797&ev=PageView&noscript=1"
   <!-- CONTATO / NEWSLETTER -->
   <section class="contato" id="contato">
     <p class="section-label">03 — Fique por dentro</p>
-    <h2 class="section-title">Novos livros, bastidores e datas de lançamento.</h2>
+    <h2 class="section-title">Assine e ganhe um capítulo bônus exclusivo de O Vazio Estrelado.</h2>
+    <p class="section-hint">Além do capítulo bônus, você recebe novidades, bastidores e datas de lançamento em primeira mão — direto no seu e-mail.</p>
     <form class="newsletter-form" id="newsletter-form">
       <input type="email" name="email" placeholder="seu@email.com" required aria-label="Seu e-mail">
-      <button type="submit" class="btn btn-primary">Inscrever-se</button>
+      <button type="submit" class="btn btn-primary">Quero o capítulo bônus</button>
     </form>
     <p class="form-note" id="form-note"></p>
 
@@ -135,6 +221,12 @@ src="https://www.facebook.com/tr?id=2176163186285797&ev=PageView&noscript=1"
   <span>© <span id="year"></span> Larissa C. L.</span>
   <span class="footer-note">Feito com tinta, café e um pouco de mistério.</span>
 </footer>
+
+<!-- CTA fixo (mobile) — aparece quando um livro está aberto -->
+<div class="sticky-cta" id="sticky-cta" hidden>
+  <span class="sticky-cta-title" id="sticky-cta-title"></span>
+  <a class="btn btn-primary" id="sticky-cta-link" target="_blank" rel="noopener">Comprar</a>
+</div>
 
 <script src="script.js"></script>
 </body>
