@@ -1,14 +1,18 @@
 /* =========================================================
    SEUS LIVROS, CONTOS E ANTOLOGIA — edite este array livremente.
    Cada item:
-     title      -> título
-     series     -> série/gênero (aparece em cima do título)
-     synopsis   -> sinopse curta (2-4 frases)
-     spineColor -> cor da lombada na estante (var(--gold) / var(--plum) / hex)
-     links      -> objeto com as opções de compra/leitura disponíveis.
-                   Chaves possíveis: ebook, fisico, conto, wattpad, antologia
-                   Cada uma tem { label, url }. Remova a chave se não existir
-                   ainda (o botão simplesmente não aparece).
+     title       -> título
+     series      -> série/gênero (aparece em cima do título)
+     synopsis    -> sinopse curta (2-4 frases)
+     spineColor  -> cor da lombada na estante (var(--gold) / var(--plum) / hex)
+     startHere   -> true para exibir o selo "Comece aqui" (livro 1 de uma série)
+     bestseller  -> true para exibir o selo "Favorito das leitoras"
+     rating      -> nota média (número, ex: 4.8) com base nas avaliações que você tiver à mão
+     testimonial -> { quote, author } — um depoimento curto de leitora pra mostrar no card
+     links       -> objeto com as opções de compra/leitura disponíveis.
+                    Chaves possíveis: ebook, fisico, conto, wattpad, antologia
+                    Cada uma tem { label, url }. Remova a chave se não existir
+                    ainda (o botão simplesmente não aparece).
    ========================================================= */
 const BOOKS = [
     {
@@ -26,6 +30,12 @@ const BOOKS = [
     synopsis: "Luna descobre um dom que a conecta a memórias que não são suas — e a uma linhagem de poder que a cidade preferia manter enterrada. Fantasia de estreia sobre heranças, dons e o peso do que vem antes de nós.",
     spineColor: "#9C5A82",
     cover: "assets/capas/vidente-de-memorias.jpg",
+    startHere: true,
+    rating: 4.8,
+    testimonial: {
+      quote: "Leitura ótima, leve e bem fluida — dá vontade de ler mais um capítulo.",
+      author: "Katharine P., compra verificada"
+    },
     links: {
       ebook: { label: "Comprar ebook", url: "https://www.amazon.com.br/dp/B0F7GZW1WX" },
       fisico: { label: "Comprar versão física", url: "https://loja.uiclap.com/titulo/ua137329" }
@@ -37,6 +47,11 @@ const BOOKS = [
     synopsis: "O universo dos Lumengarde se aprofunda: luto, ética e pertencimento se entrelaçam numa narrativa mais densa, onde o passado nunca fica realmente para trás.",
     spineColor: "#855090",
     cover: "assets/capas/labirinto-das-memorias-perdidas.jpg",
+    rating: 5.0,
+    testimonial: {
+      quote: "A Lari me fez chorar e devorar esse livro!",
+      author: "Carol L., avaliação verificada"
+    },
     links: {
       ebook: { label: "Comprar ebook", url: "https://www.amazon.com.br/dp/B0GLJM6M1T" },
       fisico: { label: "Comprar versão física", url: "https://loja.uiclap.com/titulo/ua149701" }
@@ -58,6 +73,12 @@ const BOOKS = [
     synopsis: "Duas amigas, dons que se cruzam e uma verdade escondida há gerações. Um novo capítulo no universo de mistério e magia de Larissa.",
     spineColor: "#8767B5",
     cover: "assets/capas/escolhida-das-sombras.jpg",
+    bestseller: true,
+    rating: 5.0,
+    testimonial: {
+      quote: "Jade não é uma heroína idealizada — e é justamente por isso que se torna tão real.",
+      author: "Dri, @maktubliteraria_"
+    },
     links: {
       ebook: { label: "Comprar ebook", url: "https://www.amazon.com.br/dp/B0G965YWL4" },
       fisico: { label: "Comprar versão física", url: "https://loja.uiclap.com/titulo/ua137611" }
@@ -79,6 +100,11 @@ const BOOKS = [
     synopsis: "Um detetive, uma série de crimes ritualísticos e uma cidade com mais segredos do que confessa. Mistério com uma pitada de sobrenatural.",
     spineColor: "#4A3F5E",
     cover: "assets/capas/misterio-da-primavera.jpg",
+    rating: 5.0,
+    testimonial: {
+      quote: "Um suspense viciante que desafia as leis da física.",
+      author: "Alinne M., @sistersbookaholic"
+    },
     links: {
       ebook: { label: "Comprar ebook", url: "https://www.amazon.com.br/dp/B0FHV4N9TQ" },
       fisico: { label: "Comprar versão física", url: "https://loja.uiclap.com/titulo/ua137328" }
@@ -132,9 +158,15 @@ const detail = document.getElementById("book-detail");
 const detailCover = document.getElementById("detail-cover");
 const detailSeries = document.getElementById("detail-series");
 const detailTitle = document.getElementById("detail-title");
+const detailRating = document.getElementById("detail-rating");
 const detailSynopsis = document.getElementById("detail-synopsis");
+const detailTestimonial = document.getElementById("detail-testimonial");
 const detailActions = document.getElementById("detail-actions");
 const detailClose = document.getElementById("detail-close");
+
+const stickyCta = document.getElementById("sticky-cta");
+const stickyCtaTitle = document.getElementById("sticky-cta-title");
+const stickyCtaLink = document.getElementById("sticky-cta-link");
 
 function renderShelf() {
   BOOKS.forEach((book, i) => {
@@ -145,6 +177,18 @@ function renderShelf() {
     spine.setAttribute("tabindex", "0");
     spine.setAttribute("aria-label", `Abrir ${book.title}`);
     spine.dataset.index = i;
+
+    if (book.startHere) {
+      const badge = document.createElement("span");
+      badge.className = "spine-badge spine-badge--start";
+      badge.textContent = "Comece aqui";
+      spine.appendChild(badge);
+    } else if (book.bestseller) {
+      const badge = document.createElement("span");
+      badge.className = "spine-badge spine-badge--favorite";
+      badge.textContent = "Favorito das leitoras";
+      spine.appendChild(badge);
+    }
 
     const label = document.createElement("span");
     label.className = "spine-label";
@@ -179,9 +223,29 @@ function openBook(i) {
   } else {
     detailCover.textContent = book.title;
   }
-  detailSeries.textContent = book.series;
+  detailSeries.textContent = book.series || "";
   detailTitle.textContent = book.title;
   detailSynopsis.textContent = book.synopsis;
+
+  // Prova social — nota
+  if (book.rating) {
+    const fullStars = Math.round(book.rating);
+    const stars = "★".repeat(fullStars) + "☆".repeat(5 - fullStars);
+    const ratingLabel = book.rating.toFixed(1).replace(".", ",");
+    detailRating.innerHTML = `<span class="stars">${stars}</span><span>${ratingLabel} · avaliações verificadas</span>`;
+  } else {
+    detailRating.innerHTML = "";
+  }
+
+  // Prova social — depoimento
+  if (book.testimonial) {
+    const cite = document.createElement("cite");
+    cite.textContent = book.testimonial.author;
+    detailTestimonial.innerHTML = `“${book.testimonial.quote}”`;
+    detailTestimonial.appendChild(cite);
+  } else {
+    detailTestimonial.innerHTML = "";
+  }
 
   detailActions.innerHTML = "";
   const linkKeys = Object.keys(book.links || {});
@@ -211,6 +275,21 @@ function openBook(i) {
     });
   }
 
+  // CTA fixo (mobile)
+  if (stickyCta) {
+    if (linkKeys.length > 0) {
+      const firstLink = book.links[linkKeys[0]];
+      stickyCtaTitle.textContent = book.title;
+      stickyCtaLink.href = firstLink.url;
+      stickyCtaLink.textContent = firstLink.label;
+      stickyCta.hidden = false;
+      document.body.classList.add("has-sticky-cta");
+    } else {
+      stickyCta.hidden = true;
+      document.body.classList.remove("has-sticky-cta");
+    }
+  }
+
   detail.hidden = false;
   detail.scrollIntoView({ behavior: "smooth", block: "nearest" });
 
@@ -225,6 +304,10 @@ function openBook(i) {
 detailClose.addEventListener("click", () => {
   detail.hidden = true;
   document.querySelectorAll(".spine").forEach((el) => el.classList.remove("active"));
+  if (stickyCta) {
+    stickyCta.hidden = true;
+    document.body.classList.remove("has-sticky-cta");
+  }
 });
 
 renderShelf();
@@ -254,7 +337,7 @@ form.addEventListener("submit", async (e) => {
     });
 
     if (response.ok) {
-      note.textContent = "Inscrição enviada! Obrigada por acompanhar.";
+      note.textContent = "Inscrição recebida! Em breve você vai receber o capítulo bônus por e-mail.";
       form.reset();
       if (typeof fbq !== "undefined") {
         fbq("track", "Lead");
