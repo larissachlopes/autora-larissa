@@ -21,7 +21,9 @@ const BOOKS = [
     spineColor: "#C9707A",
     cover: "assets/capas/vazio-estrelado.jpg",
     links: {
-      ebook: { label: "em breve!", url: "#" },
+      ebook: { label: "Já disponível em e-book!", url: "https://www.amazon.com.br/dp/B0HCGM2V8C" },
+      fisico: { label: "Entre em contato para saber mais sobre a versão física.", url: "https://www.instagram.com/autora_larissacl/" }
+
     }
   },
    {
