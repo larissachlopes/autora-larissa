@@ -20,6 +20,11 @@ const BOOKS = [
     synopsis: "Toda noite, quando fecha os olhos, Isadora embarca numa nave com a mãe rumo a um lugar que ninguém mais consegue ver. De dia, ela tem onze anos, um pai que deixa bilhetes na geladeira, uma melhor amiga cientista e um medalhão guardado no bolso, o que restou da mãe antes da missão mais importante que já existiu. De noite, ela tem estrelas, corredores infinitos e uma mãe que nunca tem medo de nada. Uma história sobre o que inventamos pra sobreviver ao que não sabe dizer em voz alta, e sobre a coragem de finalmente escutar a verdade.",
     spineColor: "#C9707A",
     cover: "assets/capas/vazio-estrelado.jpg",
+    rating: 5.0,
+    testimonial: {
+      quote: "Tocante, lindo, completamente imersivo.",
+      author: "Amanda C., compra verificada"
+    },
     links: {
       ebook: { label: "Já disponível em e-book!", url: "https://www.amazon.com.br/dp/B0HCGM2V8C" },
       fisico: { label: "Entre em contato para saber mais sobre a versão física.", url: "https://www.instagram.com/autora_larissacl/" }
