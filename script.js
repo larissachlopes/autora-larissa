@@ -1,361 +1,720 @@
 /* =========================================================
-   SEUS LIVROS, CONTOS E ANTOLOGIA — edite este array livremente.
-   Cada item:
-     title       -> título
-     series      -> série/gênero (aparece em cima do título)
-     synopsis    -> sinopse curta (2-4 frases)
-     spineColor  -> cor da lombada na estante (var(--gold) / var(--plum) / hex)
-     startHere   -> true para exibir o selo "Comece aqui" (livro 1 de uma série)
-     bestseller  -> true para exibir o selo "Favorito das leitoras"
-     rating      -> nota média (número, ex: 4.8) com base nas avaliações que você tiver à mão
-     testimonial -> { quote, author } — um depoimento curto de leitora pra mostrar no card
-     links       -> objeto com as opções de compra/leitura disponíveis.
-                    Chaves possíveis: ebook, fisico, conto, wattpad, antologia
-                    Cada uma tem { label, url }. Remova a chave se não existir
-                    ainda (o botão simplesmente não aparece).
+   LARISSA C. L. — SCRIPT PRINCIPAL
    ========================================================= */
-const BOOKS = [
-    {
-    title: "O Vazio Estrelado",
-    synopsis: "Toda noite, quando fecha os olhos, Isadora embarca numa nave com a mãe rumo a um lugar que ninguém mais consegue ver. De dia, ela tem onze anos, um pai que deixa bilhetes na geladeira, uma melhor amiga cientista e um medalhão guardado no bolso, o que restou da mãe antes da missão mais importante que já existiu. De noite, ela tem estrelas, corredores infinitos e uma mãe que nunca tem medo de nada. Uma história sobre o que inventamos pra sobreviver ao que não sabe dizer em voz alta, e sobre a coragem de finalmente escutar a verdade.",
-    spineColor: "#C9707A",
-    cover: "assets/capas/vazio-estrelado.jpg",
-    rating: 5.0,
-    testimonial: {
-      quote: "Tocante, lindo, completamente imersivo.",
-      author: "Amanda C., compra verificada"
-    },
-    links: {
-      ebook: { label: "Já disponível em e-book!", url: "https://www.amazon.com.br/dp/B0HCGM2V8C" },
-      fisico: { label: "Entre em contato para saber mais sobre a versão física.", url: "https://www.instagram.com/autora_larissacl/" }
 
-    }
+
+/* =========================================================
+   DADOS DOS LIVROS
+   ========================================================= */
+
+const books = [
+
+  {
+    title: "O Vazio Estrelado",
+
+    series: "Fantasia emocional",
+
+    cover: "assets/capas/vazio-estrelado.jpg",
+
+    url: "https://www.amazon.com.br/dp/B0HCGM2V8C",
+
+    rating: "★★★★★ 4,9",
+
+    spineColor: "#4a3a68",
+
+    synopsis: `
+      Toda noite, quando fecha os olhos, Isadora embarca em uma nave
+      com a mãe rumo a um lugar que ninguém mais consegue ver.
+
+      Mas, quando as perguntas começam a atravessar o espaço entre
+      as duas, Isadora precisa descobrir se algumas viagens existem
+      apenas porque ainda não estamos prontos para dizer adeus.
+    `,
+
+    testimonial: `
+      “Uma história delicada, imaginativa e muito mais profunda
+      do que parece à primeira vista.”
+    `
   },
-   {
+
+
+  {
     title: "A Vidente de Memórias",
-    series: "Crônicas dos Lumengarde · Livro 1",
-    synopsis: "Luna descobre um dom que a conecta a memórias que não são suas — e a uma linhagem de poder que a cidade preferia manter enterrada. Fantasia de estreia sobre heranças, dons e o peso do que vem antes de nós.",
-    spineColor: "#9C5A82",
-    cover: "assets/capas/vidente-de-memorias.jpg",
-    startHere: true,
-    rating: 4.8,
-    testimonial: {
-      quote: "Leitura ótima, leve e bem fluida — dá vontade de ler mais um capítulo.",
-      author: "Katharine P., compra verificada"
-    },
-    links: {
-      ebook: { label: "Comprar ebook", url: "https://www.amazon.com.br/dp/B0F7GZW1WX" },
-      fisico: { label: "Comprar versão física", url: "https://loja.uiclap.com/titulo/ua137329" }
-    }
+
+    series: "Duologia As Memórias Perdidas · Livro 1",
+
+    cover: "assets/capas/vidente-memorias.jpg",
+
+    url: "https://www.amazon.com.br/dp/B0F7GZW1WX",
+
+    rating: "★★★★★ 4,8",
+
+    spineColor: "#5f4b70",
+
+    synopsis: `
+      Algumas memórias não deveriam existir.
+
+      Em uma família de bruxos, segredos podem ser escondidos,
+      apagados ou deixados adormecidos por muito tempo.
+
+      Mas quando o passado começa a voltar à superfície, uma jovem
+      precisa descobrir quais lembranças são realmente suas e quais
+      foram deixadas para trás para protegê-la.
+    `,
+
+    testimonial: `
+      “Uma fantasia envolvente, cheia de segredos familiares,
+      magia e descobertas.”
+    `
   },
+
+
   {
     title: "O Labirinto das Memórias Perdidas",
-    series: "Crônicas dos Lumengarde · Livro 2",
-    synopsis: "O universo dos Lumengarde se aprofunda: luto, ética e pertencimento se entrelaçam numa narrativa mais densa, onde o passado nunca fica realmente para trás.",
-    spineColor: "#855090",
-    cover: "assets/capas/labirinto-das-memorias-perdidas.jpg",
-    rating: 5.0,
-    testimonial: {
-      quote: "A Lari me fez chorar e devorar esse livro!",
-      author: "Carol L., avaliação verificada"
-    },
-    links: {
-      ebook: { label: "Comprar ebook", url: "https://www.amazon.com.br/dp/B0GLJM6M1T" },
-      fisico: { label: "Comprar versão física", url: "https://loja.uiclap.com/titulo/ua149701" }
-    }
+
+    series: "Duologia As Memórias Perdidas · Livro 2",
+
+    cover: "assets/capas/labirinto-memorias.jpg",
+
+    url: "https://www.amazon.com.br/dp/B0GLJM6M1T",
+
+    rating: "★★★★★ 5,0",
+
+    spineColor: "#352d3d",
+
+    synopsis: `
+      Algumas portas deveriam continuar fechadas.
+
+      Uma mansão aparentemente abandonada guarda corredores que não
+      terminam, memórias que não pertencem apenas ao passado e um
+      perigo que talvez nunca tenha realmente desaparecido.
+
+      Para encontrar as respostas, será preciso atravessar um lugar
+      onde nem tudo o que se perde deseja ser encontrado.
+    `,
+
+    testimonial: `
+      “Mais sombrio, misterioso e cheio de revelações.
+      Uma continuação que amplia tudo.”
+    `
   },
+
+
+  {
+    title: "O Mistério da Primavera",
+
+    series: "Mistério sobrenatural",
+
+    cover: "assets/capas/misterio-primavera.jpg",
+
+    url: "https://www.amazon.com.br/dp/B0FHV4N9TQ",
+
+    rating: "★★★★☆ 4,5",
+
+    spineColor: "#6c4d59",
+
+    synopsis: `
+      Mortes aparentemente desconectadas começam a revelar uma
+      estranha ligação.
+
+      Entre investigações, visões e acontecimentos sobrenaturais,
+      uma verdade enterrada no passado começa a florescer novamente.
+
+      E algumas coisas, quando despertam, não voltam a dormir.
+    `,
+
+    testimonial: `
+      “Suspense, investigação e sobrenatural em uma história que
+      mantém a curiosidade até o fim.”
+    `
+  },
+
+
+  {
+    title: "A Escolhida das Sombras",
+
+    series: "Fantasia romântica",
+
+    cover: "assets/capas/escolhida-sombras.jpg",
+
+    url: "https://www.amazon.com.br/dp/B0G965YWL4",
+
+    rating: "★★★★★ 5,0",
+
+    spineColor: "#374239",
+
+    synopsis: `
+      Uma jovem arqueóloga descobre que não é exatamente humana.
+
+      Enquanto tenta entender sua própria origem, ela se vê envolvida
+      em uma história de criaturas, segredos e mitos brasileiros.
+
+      E, no meio de tudo isso, se apaixona por alguém treinado para
+      destruir seres como ela.
+    `,
+
+    testimonial: `
+      “Fantasia, romance e elementos da mitologia brasileira em uma
+      história cheia de descobertas.”
+    `
+  },
+
+
   {
     title: "Natal das Memórias",
-    series: "Conto avulso · Universo Crônicas dos Lumengarde",
-    synopsis: "Um conto independente ambientado no universo dos Lumengarde, perfeito para quem já leu a série ou quer uma primeira visita a esse mundo antes de mergulhar nos livros completos.",
-    spineColor: "#6E4A9E",
-    cover: "assets/capas/natal-das-memorias.jpg",
-    links: {
-      conto: { label: "Comprar conto", url: "https://www.amazon.com.br/dp/B0G9539KYM" }
-    }
+
+    series: "Conto do universo de As Memórias Perdidas",
+
+    cover: "assets/capas/natal-memorias.jpg",
+
+    url: "https://www.amazon.com.br/dp/B0G9539KYM",
+
+    rating: "",
+
+    spineColor: "#7a3f46",
+
+    synopsis: `
+      Uma história ambientada no universo de As Memórias Perdidas.
+
+      Porque algumas lembranças voltam justamente quando acreditamos
+      que seria mais fácil deixá-las para trás.
+    `,
+
+    testimonial: `
+      “Uma história curta para voltar a um universo conhecido
+      e reencontrar aquilo que permanece.”
+    `
   },
-     {
-    title: "A Escolhida das Sombras",
-    series: "Fantasia sombria",
-    synopsis: "Duas amigas, dons que se cruzam e uma verdade escondida há gerações. Um novo capítulo no universo de mistério e magia de Larissa.",
-    spineColor: "#8767B5",
-    cover: "assets/capas/escolhida-das-sombras.jpg",
-    bestseller: true,
-    rating: 5.0,
-    testimonial: {
-      quote: "Jade não é uma heroína idealizada — e é justamente por isso que se torna tão real.",
-      author: "Dri, @maktubliteraria_"
-    },
-    links: {
-      ebook: { label: "Comprar ebook", url: "https://www.amazon.com.br/dp/B0G965YWL4" },
-      fisico: { label: "Comprar versão física", url: "https://loja.uiclap.com/titulo/ua137611" }
-    }
-  },
-  {
-    title: "A Canção que Afunda o Sol",
-    series: "Conto gratuito · Universo A Escolhida das Sombras",
-    synopsis: "Um conto gratuito que expande o universo de A Escolhida das Sombras, disponível para leitura direta no Wattpad.",
-    spineColor: "#B49AD1",
-    cover: "assets/capas/cancao-que-afunda-o-sol.jpg",
-    links: {
-      wattpad: { label: "Ler grátis no Wattpad", url: "https://www.wattpad.com/story/406865630-a-can%C3%A7%C3%A3o-que-afunda-o-sol-conto-do-universo-de-a" }
-    }
-  },
-     {
-    title: "O Mistério da Primavera",
-    series: "Suspense psicológico",
-    synopsis: "Um detetive, uma série de crimes ritualísticos e uma cidade com mais segredos do que confessa. Mistério com uma pitada de sobrenatural.",
-    spineColor: "#4A3F5E",
-    cover: "assets/capas/misterio-da-primavera.jpg",
-    rating: 5.0,
-    testimonial: {
-      quote: "Um suspense viciante que desafia as leis da física.",
-      author: "Alinne M., @sistersbookaholic"
-    },
-    links: {
-      ebook: { label: "Comprar ebook", url: "https://www.amazon.com.br/dp/B0FHV4N9TQ" },
-      fisico: { label: "Comprar versão física", url: "https://loja.uiclap.com/titulo/ua137328" }
-    }
-  },
+
+
   {
     title: "Era Uma Vez… A História Não Contada",
-    series: "Antologia · Clímax Editorial",
-    synopsis: "Vinte e seis autores revisitam contos de fadas clássicos pelo ponto de vista de quem sempre ficou fora do foco — criados, animais, testemunhas silenciosas. Fantasia sombria com terror simbólico e suspense. Larissa participa com um conto original.",
-    spineColor: "#C9A227",
+
+    series: "Fantasia",
+
     cover: "assets/capas/era-uma-vez.jpg",
-    links: {
-      antologia: { label: "Comprar a antologia", url: "https://climaxeditorial.com.br/produto/era-uma-vez/" }
-    }
+
+    url: "https://climaxeditorial.com.br/produto/era-uma-vez/",
+
+    rating: "",
+
+    spineColor: "#70573b",
+
+    synopsis: `
+      Nem toda história termina da maneira como foi contada.
+
+      Entre fantasia e imaginação, esta é uma viagem por histórias,
+      personagens e caminhos que talvez nunca tenham sido vistos
+      da mesma forma.
+    `,
+
+    testimonial: `
+      “Para quem gosta de olhar para histórias conhecidas e imaginar
+      que talvez exista outra versão escondida em algum lugar.”
+    `
   }
+
 ];
 
-/* ========================================================= */
-/* Contagem regressiva do próximo lançamento.                 */
-/* Para trocar a data, edite RELEASE_DATE abaixo (mês é 0-11,  */
-/* ou seja agosto = 7). Quando o título deixar de ser segredo, */
-/* é só editar o texto direto no index.html (.teaser-title).   */
-/* ========================================================= */
-const RELEASE_DATE = new Date(2026, 7, 3); // 3 de agosto de 2026
 
-function updateCountdown() {
-  const el = document.getElementById("teaser-countdown");
-  if (!el) return;
-
-  const today = new Date();
-  today.setHours(0, 0, 0, 0);
-  const diffDays = Math.round((RELEASE_DATE - today) / (1000 * 60 * 60 * 24));
-
-  if (diffDays > 1) {
-    el.textContent = `Faltam ${diffDays} dias`;
-  } else if (diffDays === 1) {
-    el.textContent = "Falta 1 dia";
-  } else if (diffDays === 0) {
-    el.textContent = "É hoje.";
-  } else {
-    el.textContent = "Já disponível — confira na estante em breve.";
-  }
-}
-
-updateCountdown();
-
-/* ========================================================= */
+/* =========================================================
+   ELEMENTOS
+   ========================================================= */
 
 const shelf = document.getElementById("shelf");
-const detail = document.getElementById("book-detail");
+
+const bookDetail = document.getElementById("book-detail");
+
 const detailCover = document.getElementById("detail-cover");
+
 const detailSeries = document.getElementById("detail-series");
+
 const detailTitle = document.getElementById("detail-title");
+
 const detailRating = document.getElementById("detail-rating");
+
 const detailSynopsis = document.getElementById("detail-synopsis");
+
 const detailTestimonial = document.getElementById("detail-testimonial");
+
 const detailActions = document.getElementById("detail-actions");
+
 const detailClose = document.getElementById("detail-close");
 
-const stickyCta = document.getElementById("sticky-cta");
-const stickyCtaTitle = document.getElementById("sticky-cta-title");
-const stickyCtaLink = document.getElementById("sticky-cta-link");
+const stickyCTA = document.getElementById("sticky-cta");
 
-function renderShelf() {
-  BOOKS.forEach((book, i) => {
-    const spine = document.createElement("div");
-    spine.className = "spine";
-    spine.style.background = book.spineColor;
+const stickyCTATitle = document.getElementById("sticky-cta-title");
+
+const stickyCTALink = document.getElementById("sticky-cta-link");
+
+const year = document.getElementById("year");
+
+
+let currentBook = null;
+
+
+/* =========================================================
+   CRIA A ESTANTE
+   ========================================================= */
+
+function createShelf() {
+
+  if (!shelf) return;
+
+  shelf.innerHTML = "";
+
+
+  books.forEach((book, index) => {
+
+    const spine = document.createElement("button");
+
+    spine.type = "button";
+
+    spine.className = "book-spine";
+
     spine.setAttribute("role", "listitem");
-    spine.setAttribute("tabindex", "0");
-    spine.setAttribute("aria-label", `Abrir ${book.title}`);
-    spine.dataset.index = i;
 
-    if (book.startHere) {
-      const badge = document.createElement("span");
-      badge.className = "spine-badge spine-badge--start";
-      badge.textContent = "Comece aqui";
-      spine.appendChild(badge);
-    } else if (book.bestseller) {
-      const badge = document.createElement("span");
-      badge.className = "spine-badge spine-badge--favorite";
-      badge.textContent = "Favorito das leitoras";
-      spine.appendChild(badge);
-    }
+    spine.setAttribute(
+      "aria-label",
+      `Abrir detalhes de ${book.title}`
+    );
 
-    const label = document.createElement("span");
-    label.className = "spine-label";
-    label.textContent = book.title;
-    spine.appendChild(label);
 
-    spine.addEventListener("click", () => openBook(i));
-    spine.addEventListener("keydown", (e) => {
-      if (e.key === "Enter" || e.key === " ") {
-        e.preventDefault();
-        openBook(i);
-      }
+    /*
+      Cada lombada recebe uma largura ligeiramente diferente.
+      Isso ajuda a estante a parecer mais uma coleção de livros
+      e menos uma fileira de botões clonados.
+    */
+
+    const widths = [
+      48,
+      55,
+      43,
+      58,
+      51,
+      45,
+      54
+    ];
+
+    spine.style.width =
+      `${widths[index % widths.length]}px`;
+
+    spine.style.background =
+      book.spineColor;
+
+
+    const spineTitle = document.createElement("span");
+
+    spineTitle.className = "book-spine-title";
+
+    spineTitle.textContent = book.title;
+
+
+    spine.appendChild(spineTitle);
+
+
+    spine.addEventListener("click", () => {
+
+      openBook(book);
+
     });
+
 
     shelf.appendChild(spine);
+
   });
+
 }
 
-function openBook(i) {
-  const book = BOOKS[i];
 
-  document.querySelectorAll(".spine").forEach((el) => el.classList.remove("active"));
-  document.querySelector(`.spine[data-index="${i}"]`).classList.add("active");
+/* =========================================================
+   ABRE UM LIVRO
+   ========================================================= */
 
-  detailCover.style.background = book.spineColor;
-  detailCover.innerHTML = "";
-  if (book.cover) {
-    const img = document.createElement("img");
-    img.src = book.cover;
-    img.alt = `Capa de ${book.title}`;
-    detailCover.appendChild(img);
-  } else {
-    detailCover.textContent = book.title;
-  }
-  detailSeries.textContent = book.series || "";
-  detailTitle.textContent = book.title;
-  detailSynopsis.textContent = book.synopsis;
+function openBook(book) {
 
-  // Prova social — nota
+  if (!book || !bookDetail) return;
+
+
+  currentBook = book;
+
+
+  /*
+     CAPA
+  */
+
+  detailCover.innerHTML = `
+    <img
+      src="${book.cover}"
+      alt="Capa do livro ${book.title}"
+    >
+  `;
+
+
+  /*
+     SÉRIE / CATEGORIA
+  */
+
+  detailSeries.textContent =
+    book.series || "";
+
+
+  /*
+     TÍTULO
+  */
+
+  detailTitle.textContent =
+    book.title;
+
+
+  /*
+     AVALIAÇÃO
+  */
+
   if (book.rating) {
-    const fullStars = Math.round(book.rating);
-    const stars = "★".repeat(fullStars) + "☆".repeat(5 - fullStars);
-    const ratingLabel = book.rating.toFixed(1).replace(".", ",");
-    detailRating.innerHTML = `<span class="stars">${stars}</span><span>${ratingLabel} · avaliações verificadas</span>`;
+
+    detailRating.textContent =
+      book.rating;
+
+    detailRating.style.display =
+      "block";
+
   } else {
-    detailRating.innerHTML = "";
+
+    detailRating.textContent =
+      "";
+
+    detailRating.style.display =
+      "none";
+
   }
 
-  // Prova social — depoimento
+
+  /*
+     SINOPSE
+
+     O trim remove os espaços extras que existem
+     no template literal.
+  */
+
+  detailSynopsis.textContent =
+    book.synopsis.trim();
+
+
+  /*
+     DEPOIMENTO
+  */
+
   if (book.testimonial) {
-    const cite = document.createElement("cite");
-    cite.textContent = book.testimonial.author;
-    detailTestimonial.innerHTML = `“${book.testimonial.quote}”`;
-    detailTestimonial.appendChild(cite);
+
+    detailTestimonial.textContent =
+      book.testimonial.trim();
+
+    detailTestimonial.style.display =
+      "block";
+
   } else {
-    detailTestimonial.innerHTML = "";
+
+    detailTestimonial.textContent =
+      "";
+
+    detailTestimonial.style.display =
+      "none";
+
   }
 
-  detailActions.innerHTML = "";
-  const linkKeys = Object.keys(book.links || {});
-  if (linkKeys.length === 0) {
-    const soon = document.createElement("p");
-    soon.className = "form-note";
-    soon.textContent = "Link em breve.";
-    detailActions.appendChild(soon);
-  } else {
-    linkKeys.forEach((key, idx) => {
-      const link = book.links[key];
-      const a = document.createElement("a");
-      a.className = idx === 0 ? "btn btn-primary" : "btn btn-secondary";
-      a.href = link.url;
-      a.target = "_blank";
-      a.rel = "noopener";
-      a.textContent = link.label;
-      a.addEventListener("click", () => {
-        if (typeof fbq !== "undefined") {
-          fbq("trackCustom", "ClickComprarLivro", {
-            content_name: book.title,
-            tipo: key
-          });
-        }
-      });
-      detailActions.appendChild(a);
+
+  /*
+     BOTÕES
+  */
+
+  detailActions.innerHTML = `
+    <a
+      href="${book.url}"
+      target="_blank"
+      rel="noopener"
+      class="detail-buy"
+    >
+      Onde encontrar o livro ↗
+    </a>
+  `;
+
+
+  /*
+     MOSTRA A ÁREA
+  */
+
+  bookDetail.hidden = false;
+
+
+  /*
+     CTA MOBILE
+  */
+
+  updateStickyCTA(book);
+
+
+  /*
+     DESCE ATÉ O LIVRO.
+
+     Pequeno atraso para garantir que o hidden
+     já tenha sido removido antes do cálculo.
+  */
+
+  setTimeout(() => {
+
+    bookDetail.scrollIntoView({
+      behavior: "smooth",
+      block: "start"
     });
-  }
 
-  // CTA fixo (mobile)
-  if (stickyCta) {
-    if (linkKeys.length > 0) {
-      const firstLink = book.links[linkKeys[0]];
-      stickyCtaTitle.textContent = book.title;
-      stickyCtaLink.href = firstLink.url;
-      stickyCtaLink.textContent = firstLink.label;
-      stickyCta.hidden = false;
-      document.body.classList.add("has-sticky-cta");
-    } else {
-      stickyCta.hidden = true;
-      document.body.classList.remove("has-sticky-cta");
-    }
-  }
+  }, 50);
 
-  detail.hidden = false;
-  detail.scrollIntoView({ behavior: "smooth", block: "nearest" });
-
-  if (typeof fbq !== "undefined") {
-    fbq("track", "ViewContent", {
-      content_name: book.title,
-      content_category: book.series
-    });
-  }
 }
 
-detailClose.addEventListener("click", () => {
-  detail.hidden = true;
-  document.querySelectorAll(".spine").forEach((el) => el.classList.remove("active"));
-  if (stickyCta) {
-    stickyCta.hidden = true;
-    document.body.classList.remove("has-sticky-cta");
-  }
-});
 
-renderShelf();
+/* =========================================================
+   FECHA DETALHES
+   ========================================================= */
+
+function closeBook() {
+
+  if (!bookDetail) return;
+
+  bookDetail.hidden = true;
+
+  currentBook = null;
 
 
-const FORMSPREE_ENDPOINT = "https://formspree.io/f/mojgqkkl";
+  if (stickyCTA) {
 
-const form = document.getElementById("newsletter-form");
-const note = document.getElementById("form-note");
+    stickyCTA.hidden = true;
 
-form.addEventListener("submit", async (e) => {
-  e.preventDefault();
-
-  if (FORMSPREE_ENDPOINT.includes("SEU_ID_AQUI")) {
-    note.textContent = "Formulário ainda não configurado — veja o README para conectar ao Formspree.";
-    return;
   }
 
-  const email = form.email.value;
-  note.textContent = "Enviando...";
+}
 
-  try {
-    const response = await fetch(FORMSPREE_ENDPOINT, {
-      method: "POST",
-      headers: { "Accept": "application/json" },
-      body: new FormData(form)
-    });
 
-    if (response.ok) {
-      note.textContent = "Inscrição recebida! Em breve você vai receber o capítulo bônus por e-mail.";
-      form.reset();
-      if (typeof fbq !== "undefined") {
-        fbq("track", "Lead");
-      }
-    } else {
-      note.textContent = "Não consegui enviar agora — tenta de novo em instantes.";
+if (detailClose) {
+
+  detailClose.addEventListener("click", closeBook);
+
+}
+
+
+/* =========================================================
+   CARDS "COMECE POR AQUI"
+   =========================================================
+
+   O HTML usa:
+
+   data-book-title="A Vidente de Memórias"
+
+   Procuramos o livro com exatamente esse título
+   dentro do array books.
+*/
+
+const storyPaths =
+  document.querySelectorAll(".story-path");
+
+
+storyPaths.forEach((path) => {
+
+  path.addEventListener("click", () => {
+
+    const bookTitle =
+      path.dataset.bookTitle;
+
+
+    const book =
+      books.find(
+        (item) =>
+          item.title === bookTitle
+      );
+
+
+    if (book) {
+
+      openBook(book);
+
     }
-  } catch (err) {
-    note.textContent = "Não consegui enviar agora — verifica sua conexão e tenta de novo.";
-  }
+
+  });
+
 });
 
-/* Footer year */
-document.getElementById("year").textContent = new Date().getFullYear();
+
+/* =========================================================
+   CTA FIXO MOBILE
+   ========================================================= */
+
+function updateStickyCTA(book) {
+
+  if (
+    !stickyCTA ||
+    !stickyCTATitle ||
+    !stickyCTALink
+  ) return;
+
+
+  stickyCTATitle.textContent =
+    book.title;
+
+
+  stickyCTALink.href =
+    book.url;
+
+
+  stickyCTA.hidden = false;
+
+}
+
+
+/*
+   Caso o usuário volte ao topo e nenhum livro
+   esteja selecionado, o CTA não precisa ficar
+   ocupando a tela.
+*/
+
+window.addEventListener("scroll", () => {
+
+  if (!stickyCTA) return;
+
+
+  if (!currentBook) {
+
+    stickyCTA.hidden = true;
+
+    return;
+
+  }
+
+
+  /*
+    Mantém o CTA apenas em telas mobile.
+  */
+
+  if (window.innerWidth > 680) {
+
+    stickyCTA.hidden = true;
+
+  } else {
+
+    stickyCTA.hidden = false;
+
+  }
+
+});
+
+
+window.addEventListener("resize", () => {
+
+  if (!stickyCTA) return;
+
+
+  if (window.innerWidth > 680) {
+
+    stickyCTA.hidden = true;
+
+  } else if (currentBook) {
+
+    stickyCTA.hidden = false;
+
+  }
+
+});
+
+
+/* =========================================================
+   NEWSLETTER
+   ========================================================= */
+
+const newsletterForm =
+  document.getElementById("newsletter-form");
+
+const formNote =
+  document.getElementById("form-note");
+
+
+if (newsletterForm) {
+
+  newsletterForm.addEventListener(
+    "submit",
+    (event) => {
+
+      event.preventDefault();
+
+
+      const emailInput =
+        newsletterForm.querySelector(
+          'input[type="email"]'
+        );
+
+
+      const email =
+        emailInput.value.trim();
+
+
+      /*
+        Aqui está apenas a confirmação visual.
+
+        Para realmente cadastrar os e-mails,
+        depois será necessário conectar este
+        formulário a Brevo, Mailchimp, Buttondown,
+        Formspree ou outro serviço.
+      */
+
+      if (!email) {
+
+        if (formNote) {
+
+          formNote.textContent =
+            "Digite seu e-mail para continuar.";
+
+        }
+
+        return;
+
+      }
+
+
+      if (formNote) {
+
+        formNote.textContent =
+          "Obrigada! Em breve você receberá o capítulo bônus. ✦";
+
+      }
+
+
+      newsletterForm.reset();
+
+    }
+  );
+
+}
+
+
+/* =========================================================
+   ANO AUTOMÁTICO
+   ========================================================= */
+
+if (year) {
+
+  year.textContent =
+    new Date().getFullYear();
+
+}
+
+
+/* =========================================================
+   INICIALIZAÇÃO
+   ========================================================= */
+
+document.addEventListener(
+  "DOMContentLoaded",
+  () => {
+
+    createShelf();
+
+  }
+);
