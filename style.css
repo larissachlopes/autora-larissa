@@ -785,12 +785,24 @@ main {
 
   position: relative;
 
-  overflow-x: auto;
+  /*
+     Sem overflow por padrão: só vira rolável
+     (via .shelf--scrollable) quando os livros
+     realmente não cabem na largura disponível.
+  */
+
+  overflow-x: hidden;
 
   border-bottom: 14px solid rgba(244, 240, 235, 0.18);
 
   scrollbar-width: thin;
   scrollbar-color: var(--accent-soft) transparent;
+}
+
+.shelf--scrollable {
+
+  overflow-x: auto;
+
 }
 
 .shelf::before {
