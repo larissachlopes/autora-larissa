@@ -446,6 +446,142 @@ main {
 
 
 /* =========================================================
+   INTERESSE NO KIT IMPRESSO (1ª LEVA)
+   ========================================================= */
+
+.kit-interest {
+  max-width: 560px;
+
+  margin-top: 22px;
+
+  padding-top: 22px;
+
+  border-top: 1px dashed var(--line-strong);
+}
+
+.kit-interest-toggle {
+  background: transparent;
+
+  padding: 0;
+
+  color: var(--accent);
+
+  font-family: var(--mono);
+  font-size: 0.74rem;
+
+  font-weight: 600;
+
+  letter-spacing: 0.04em;
+
+  text-decoration: underline;
+  text-underline-offset: 4px;
+  text-decoration-color: var(--accent-soft);
+
+  cursor: pointer;
+
+  transition: color 0.2s ease;
+}
+
+.kit-interest-toggle:hover {
+  color: var(--text);
+}
+
+.kit-form-wrap {
+  margin-top: 20px;
+}
+
+.kit-form-wrap[hidden] {
+  display: none;
+}
+
+.kit-form-intro {
+  max-width: 480px;
+
+  margin: 0 0 18px;
+
+  color: var(--text-soft);
+
+  font-size: 0.88rem;
+
+  line-height: 1.7;
+}
+
+.kit-form-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+
+  gap: 12px;
+}
+
+.kit-field {
+  display: flex;
+  flex-direction: column;
+
+  gap: 6px;
+}
+
+.kit-field--full {
+  grid-column: 1 / -1;
+}
+
+.kit-field span {
+  color: var(--text-muted);
+
+  font-family: var(--mono);
+  font-size: 0.62rem;
+
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+
+.kit-field input {
+  min-height: 44px;
+
+  padding: 0 14px;
+
+  background: rgba(255, 255, 255, 0.05);
+
+  border: 1px solid var(--line-strong);
+
+  border-radius: 2px;
+
+  color: var(--text);
+
+  outline: none;
+
+  transition:
+    border-color 0.2s ease,
+    background 0.2s ease;
+}
+
+.kit-field input::placeholder {
+  color: var(--text-muted);
+}
+
+.kit-field input:focus {
+  background: rgba(255, 255, 255, 0.075);
+
+  border-color: var(--accent);
+}
+
+.kit-form-submit {
+  margin-top: 18px;
+}
+
+.kit-form-note {
+  min-height: 20px;
+
+  margin: 12px 0 0;
+
+  color: var(--accent);
+
+  font-size: 0.82rem;
+
+  line-height: 1.5;
+}
+
+
+/* =========================================================
    COMECE POR AQUI
    ========================================================= */
 
@@ -1419,6 +1555,19 @@ main {
   .teaser-synopsis {
     margin-left: auto;
     margin-right: auto;
+  }
+
+
+  /* KIT IMPRESSO */
+
+  .kit-interest {
+    max-width: none;
+
+    text-align: left;
+  }
+
+  .kit-form-grid {
+    grid-template-columns: 1fr;
   }
 
 
