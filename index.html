@@ -460,10 +460,192 @@ fbq('track', 'PageView');
 
     <a
       class="btn btn-primary"
-      href="#comece-aqui"
+      href="#estante"
+      id="teaser-cta"
+      data-book-title="O Vazio Estrelado"
     >
       Conheça O Vazio Estrelado ↓
     </a>
+
+
+    <!-- =====================================================
+         INTERESSE NO KIT IMPRESSO (1ª LEVA)
+    ====================================================== -->
+
+    <div class="kit-interest" id="kit-interest">
+
+      <button
+        type="button"
+        class="kit-interest-toggle"
+        id="kit-interest-toggle"
+        aria-expanded="false"
+        aria-controls="kit-form-wrap"
+      >
+        Quero o kit impresso (1ª leva) →
+      </button>
+
+
+      <div
+        class="kit-form-wrap"
+        id="kit-form-wrap"
+        hidden
+      >
+
+        <p class="kit-form-intro">
+
+          Deixe seus dados e o endereço completo. A Larissa vai
+          simular o frete pra sua região e te enviar o valor final
+          antes de qualquer cobrança.
+
+        </p>
+
+
+        <form
+          class="kit-form"
+          id="kit-form"
+          action="https://formspree.io/f/xoeabgak"
+          method="POST"
+        >
+
+          <input
+            type="hidden"
+            name="_subject"
+            value="Interesse no kit impresso — O Vazio Estrelado"
+          >
+
+          <div class="kit-form-grid">
+
+            <label class="kit-field kit-field--full">
+              <span>Nome completo</span>
+              <input
+                type="text"
+                name="nome"
+                id="kit-nome"
+                required
+                autocomplete="name"
+              >
+            </label>
+
+
+            <label class="kit-field">
+              <span>E-mail</span>
+              <input
+                type="email"
+                name="email"
+                id="kit-email"
+                required
+                autocomplete="email"
+              >
+            </label>
+
+
+            <label class="kit-field">
+              <span>WhatsApp / telefone</span>
+              <input
+                type="tel"
+                name="telefone"
+                id="kit-telefone"
+                autocomplete="tel"
+                placeholder="(00) 00000-0000"
+              >
+            </label>
+
+
+            <label class="kit-field">
+              <span>CEP</span>
+              <input
+                type="text"
+                name="cep"
+                id="kit-cep"
+                required
+                inputmode="numeric"
+                placeholder="00000-000"
+              >
+            </label>
+
+
+            <label class="kit-field">
+              <span>Cidade</span>
+              <input
+                type="text"
+                name="cidade"
+                id="kit-cidade"
+                required
+                autocomplete="address-level2"
+              >
+            </label>
+
+
+            <label class="kit-field">
+              <span>Estado</span>
+              <input
+                type="text"
+                name="estado"
+                id="kit-estado"
+                required
+                autocomplete="address-level1"
+                placeholder="Ex: RS"
+              >
+            </label>
+
+
+            <label class="kit-field">
+              <span>Bairro</span>
+              <input
+                type="text"
+                name="bairro"
+                id="kit-bairro"
+                required
+                autocomplete="address-level3"
+              >
+            </label>
+
+
+            <label class="kit-field kit-field--full">
+              <span>Endereço (rua e número)</span>
+              <input
+                type="text"
+                name="endereco"
+                id="kit-endereco"
+                required
+                autocomplete="street-address"
+                placeholder="Rua, número"
+              >
+            </label>
+
+
+            <label class="kit-field kit-field--full">
+              <span>Complemento (opcional)</span>
+              <input
+                type="text"
+                name="complemento"
+                id="kit-complemento"
+                autocomplete="address-line2"
+                placeholder="Apto, bloco, ponto de referência..."
+              >
+            </label>
+
+          </div>
+
+
+          <button
+            type="submit"
+            class="btn btn-primary kit-form-submit"
+          >
+            Enviar interesse
+          </button>
+
+
+          <p
+            class="kit-form-note"
+            id="kit-form-note"
+          ></p>
+
+        </form>
+
+      </div>
+
+    </div>
 
   </div>
 
@@ -925,6 +1107,8 @@ fbq('track', 'PageView');
   <form
     class="newsletter-form"
     id="newsletter-form"
+    action="https://formspree.io/f/mojgqkkl"
+    method="POST"
   >
 
     <input
