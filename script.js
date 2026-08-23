@@ -623,6 +623,50 @@ storyPaths.forEach((path) => {
 
 
 /* =========================================================
+   CTA DO BANNER DE DESTAQUE (TEASER)
+
+   Em vez de rolar até "Comece por aqui", este botão
+   abre direto os detalhes do livro em destaque, igual
+   a clicar na lombada dele na estante.
+   ========================================================= */
+
+const teaserCta =
+  document.getElementById("teaser-cta");
+
+
+if (teaserCta) {
+
+  teaserCta.addEventListener("click", (event) => {
+
+    const bookTitle =
+      teaserCta.dataset.bookTitle;
+
+
+    const book = BOOKS.find(
+      item => item.title === bookTitle
+    );
+
+
+    if (book) {
+
+      event.preventDefault();
+
+      openBook(book);
+
+    }
+
+    /*
+       Se por algum motivo o livro não for encontrado,
+       o href="#estante" continua funcionando como
+       alternativa de segurança.
+    */
+
+  });
+
+}
+
+
+/* =========================================================
    CTA FIXO MOBILE
    ========================================================= */
 
@@ -718,7 +762,7 @@ if (newsletterForm) {
 
   newsletterForm.addEventListener(
     "submit",
-    event => {
+    async event => {
 
       event.preventDefault();
 
@@ -748,23 +792,230 @@ if (newsletterForm) {
 
 
       /*
-         Por enquanto esta é apenas a confirmação visual.
-         A integração real com Brevo, Mailchimp etc.
-         pode ser adicionada depois.
+         Envia para o Formspree via fetch, sem
+         redirecionar a pessoa para fora do site.
       */
 
       if (formNote) {
 
         formNote.textContent =
-          "Obrigada! Em breve você receberá o capítulo bônus. ✦";
+          "Enviando...";
 
       }
 
 
-      newsletterForm.reset();
+      try {
+
+        const response = await fetch(
+          newsletterForm.action,
+          {
+            method: "POST",
+            body: new FormData(newsletterForm),
+            headers: {
+              Accept: "application/json"
+            }
+          }
+        );
+
+
+        if (response.ok) {
+
+          if (formNote) {
+
+            formNote.textContent =
+              "Obrigada! Em breve você receberá o capítulo bônus. ✦";
+
+          }
+
+          newsletterForm.reset();
+
+        } else {
+
+          if (formNote) {
+
+            formNote.textContent =
+              "Algo deu errado. Tente novamente em instantes.";
+
+          }
+
+        }
+
+      } catch (error) {
+
+        if (formNote) {
+
+          formNote.textContent =
+            "Sem conexão no momento. Tente novamente em instantes.";
+
+        }
+
+      }
 
     }
   );
+
+}
+
+
+/* =========================================================
+   INTERESSE NO KIT IMPRESSO (1ª LEVA)
+
+   Envia os dados (incluindo o endereço completo) para o
+   Formspree, para a Larissa simular o frete e responder
+   com o valor final.
+   ========================================================= */
+
+const kitInterestToggle =
+  document.getElementById("kit-interest-toggle");
+
+const kitFormWrap =
+  document.getElementById("kit-form-wrap");
+
+const kitForm =
+  document.getElementById("kit-form");
+
+const kitFormNote =
+  document.getElementById("kit-form-note");
+
+
+if (kitInterestToggle && kitFormWrap) {
+
+  kitInterestToggle.addEventListener("click", () => {
+
+    const isHidden = kitFormWrap.hidden;
+
+    kitFormWrap.hidden = !isHidden;
+
+    kitInterestToggle.setAttribute(
+      "aria-expanded",
+      String(isHidden)
+    );
+
+    kitInterestToggle.dataset.open =
+      isHidden ? "true" : "false";
+
+
+    if (isHidden) {
+
+      setTimeout(() => {
+
+        kitFormWrap.scrollIntoView({
+          behavior: "smooth",
+          block: "nearest"
+        });
+
+      }, 50);
+
+    }
+
+  });
+
+}
+
+
+if (kitForm) {
+
+  kitForm.addEventListener("submit", async event => {
+
+    event.preventDefault();
+
+
+    const getValue = id => {
+
+      const field =
+        document.getElementById(id);
+
+      return field ?
+        field.value.trim() :
+        "";
+
+    };
+
+
+    const nome = getValue("kit-nome");
+    const email = getValue("kit-email");
+    const cep = getValue("kit-cep");
+    const cidade = getValue("kit-cidade");
+    const estado = getValue("kit-estado");
+    const bairro = getValue("kit-bairro");
+    const endereco = getValue("kit-endereco");
+
+
+    if (!nome || !email || !cep || !cidade || !estado || !bairro || !endereco) {
+
+      if (kitFormNote) {
+
+        kitFormNote.textContent =
+          "Preencha os campos obrigatórios (nome, e-mail e endereço completo).";
+
+      }
+
+      return;
+
+    }
+
+
+    /*
+       Envia para o Formspree via fetch, sem
+       redirecionar a pessoa para fora do site.
+    */
+
+    if (kitFormNote) {
+
+      kitFormNote.textContent =
+        "Enviando...";
+
+    }
+
+
+    try {
+
+      const response = await fetch(
+        kitForm.action,
+        {
+          method: "POST",
+          body: new FormData(kitForm),
+          headers: {
+            Accept: "application/json"
+          }
+        }
+      );
+
+
+      if (response.ok) {
+
+        if (kitFormNote) {
+
+          kitFormNote.textContent =
+            "Recebido! A Larissa vai simular o frete pra sua região e te enviar o valor final por e-mail. ✦";
+
+        }
+
+        kitForm.reset();
+
+      } else {
+
+        if (kitFormNote) {
+
+          kitFormNote.textContent =
+            "Algo deu errado ao enviar. Tente novamente em instantes.";
+
+        }
+
+      }
+
+    } catch (error) {
+
+      if (kitFormNote) {
+
+        kitFormNote.textContent =
+          "Sem conexão no momento. Tente novamente em instantes.";
+
+      }
+
+    }
+
+  });
 
 }
 
