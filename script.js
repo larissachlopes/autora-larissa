@@ -35,8 +35,8 @@ const BOOKS = [
       },
 
       fisico: {
-        label: "Entre em contato para saber mais sobre a versão física.",
-        url: "https://www.instagram.com/autora_larissacl/"
+        label: "Quero o kit impresso (1ª leva)",
+        action: "kit-form"
       }
 
     }
@@ -380,6 +380,33 @@ function renderShelf() {
 
   });
 
+
+  updateShelfScrollability();
+
+}
+
+
+/* =========================================================
+   BARRA DE ROLAGEM DA PRATELEIRA
+
+   Só ativa a rolagem (e a barra visual) quando os
+   livros realmente não cabem na largura disponível.
+   ========================================================= */
+
+function updateShelfScrollability() {
+
+  if (!shelf) return;
+
+
+  const isScrollable =
+    shelf.scrollWidth > shelf.clientWidth + 1;
+
+
+  shelf.classList.toggle(
+    "shelf--scrollable",
+    isScrollable
+  );
+
 }
 
 
@@ -493,7 +520,50 @@ function openBook(book) {
     Object.entries(book.links).forEach(
       ([type, link]) => {
 
-        if (!link || !link.url) return;
+        if (!link) return;
+
+
+        /*
+           Classes extras permitem estilizar
+           ebook, físico, Wattpad etc.
+        */
+
+        const className =
+          `detail-action detail-action--${type}`;
+
+
+        /*
+           Links especiais (como o kit impresso)
+           abrem o formulário na página em vez de
+           levar a pessoa para fora do site.
+        */
+
+        if (link.action === "kit-form") {
+
+          const action = document.createElement("button");
+
+          action.type = "button";
+
+          action.textContent = link.label;
+
+          action.className = className;
+
+
+          action.addEventListener("click", () => {
+
+            openKitInterestForm();
+
+          });
+
+
+          detailActions.appendChild(action);
+
+          return;
+
+        }
+
+
+        if (!link.url) return;
 
 
         const action = document.createElement("a");
@@ -506,14 +576,7 @@ function openBook(book) {
 
         action.textContent = link.label;
 
-
-        /*
-           Classes extras permitem estilizar
-           ebook, físico, Wattpad etc.
-        */
-
-        action.className =
-          `detail-action detail-action--${type}`;
+        action.className = className;
 
 
         detailActions.appendChild(action);
@@ -688,20 +751,24 @@ function updateStickyCta(book) {
 
   /*
      Ordem de preferência do botão mobile.
+     (Ignora links sem url, como o do kit impresso,
+     que abre o formulário em vez de navegar.)
   */
 
-  if (book.links?.ebook) {
+  if (book.links?.ebook?.url) {
 
     link = book.links.ebook;
 
-  } else if (book.links?.fisico) {
+  } else if (book.links?.fisico?.url) {
 
     link = book.links.fisico;
 
   } else if (book.links) {
 
     link =
-      Object.values(book.links)[0];
+      Object.values(book.links).find(
+        item => item && item.url
+      ) || null;
 
   }
 
@@ -737,6 +804,9 @@ function updateStickyCta(book) {
    ========================================================= */
 
 window.addEventListener("resize", () => {
+
+  updateShelfScrollability();
+
 
   if (!stickyCta) return;
 
@@ -878,33 +948,60 @@ const kitFormNote =
   document.getElementById("kit-form-note");
 
 
+/*
+   Abre (ou garante aberto) o formulário do kit impresso
+   e rola até ele. Usado tanto pelo link "Quero o kit..."
+   no banner quanto pelo botão de "versão física" no
+   detalhe do livro na estante.
+*/
+
+function openKitInterestForm() {
+
+  if (!kitFormWrap) return;
+
+
+  kitFormWrap.hidden = false;
+
+
+  if (kitInterestToggle) {
+
+    kitInterestToggle.setAttribute("aria-expanded", "true");
+
+    kitInterestToggle.dataset.open = "true";
+
+  }
+
+
+  setTimeout(() => {
+
+    kitFormWrap.scrollIntoView({
+      behavior: "smooth",
+      block: "center"
+    });
+
+  }, 80);
+
+}
+
+
 if (kitInterestToggle && kitFormWrap) {
 
   kitInterestToggle.addEventListener("click", () => {
 
     const isHidden = kitFormWrap.hidden;
 
-    kitFormWrap.hidden = !isHidden;
-
-    kitInterestToggle.setAttribute(
-      "aria-expanded",
-      String(isHidden)
-    );
-
-    kitInterestToggle.dataset.open =
-      isHidden ? "true" : "false";
-
 
     if (isHidden) {
 
-      setTimeout(() => {
+      openKitInterestForm();
 
-        kitFormWrap.scrollIntoView({
-          behavior: "smooth",
-          block: "nearest"
-        });
+    } else {
 
-      }, 50);
+      kitFormWrap.hidden = true;
+
+      kitInterestToggle.setAttribute("aria-expanded", "false");
+
+      kitInterestToggle.dataset.open = "false";
 
     }
 
