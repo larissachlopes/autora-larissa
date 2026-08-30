@@ -20,7 +20,7 @@ const BOOKS = [
 
     cover: "assets/capas/vazio-estrelado.jpg",
 
-    rating: 5.0,
+    rating: 4.9,
 
     testimonial: {
       quote: "Tocante, lindo, completamente imersivo.",
@@ -56,7 +56,7 @@ const BOOKS = [
 
     startHere: true,
 
-    rating: 4.8,
+    rating: 4.7,
 
     testimonial: {
       quote: "Leitura ótima, leve e bem fluida — dá vontade de ler mais um capítulo.",
@@ -148,7 +148,7 @@ const BOOKS = [
 
     bestseller: true,
 
-    rating: 5.0,
+    rating: 4.5,
 
     testimonial: {
       quote: "Jade não é uma heroína idealizada — e é justamente por isso que se torna tão real.",
@@ -204,7 +204,7 @@ const BOOKS = [
 
     cover: "assets/capas/misterio-da-primavera.jpg",
 
-    rating: 5.0,
+    rating: 4.1,
 
     testimonial: {
       quote: "Um suspense viciante que desafia as leis da física.",
