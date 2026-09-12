@@ -37,6 +37,21 @@ const BOOKS = [
       fisico: {
         label: "Quero o kit impresso (1ª leva)",
         action: "kit-form"
+      },
+
+      playlist: {
+        label: "Ouvir a playlist do livro",
+        url: "https://canva.link/2rczwi9l04fu1b9"
+      },
+
+      guia: {
+        label: "Baixar guia de leitura",
+        url: "https://canva.link/zltxxhfgdjhtxsz"
+      },
+
+      capituloExtra: {
+        label: "Ler capítulo extra (bônus)",
+        url: "https://drive.google.com/file/d/1DROYYDNA-a8iB5ISuhNVVuKoIzb4j9Vh/view?usp=drive_link"
       }
 
     }
